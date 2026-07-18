@@ -1,0 +1,149 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    background-color: #F0FAEE;
+    border-right: 1px solid #ddd;
+}
+
+.logo-block {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo-img {
+    width: 40px;
+    height: 40px;
+}
+
+.logo-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1F7A1F;
+}
+
+.side-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    flex: 1;
+}
+
+.side-link {
+    text-decoration: none;
+    color: #444;
+    font-size: 14px;
+    padding: 10px 12px;
+    border-radius: 6px;
+}
+
+.side-link:hover {
+    background-color: #E3F4DE;
+}
+
+.side-link.active {
+    background-color: #D4F4D0;
+    color: #1F7A1F;
+    font-weight: 600;
+}
+
+.book-now-btn {
+    margin: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #1F7A1F;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.book-now-btn:hover {
+    background-color: #185f18;
+}
+
+/* MAIN AREA */
+.main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* TOP BAR */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    border-bottom: 1px solid #ddd;
+}
+
+.search-box input {
+    width: 240px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.login-btn {
+    padding: 8px 16px;
+    border: 1px solid #32CD32;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #1F7A1F;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.signup-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #32CD32;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: #f0fff0;
+}
+
+.signup-btn:hover {
+    background-color: #28a428;
+}
+
+/* PAGE CONTENT */
+.page-content {
+    flex: 1;
+    padding: 24px;
+}
