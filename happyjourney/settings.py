@@ -40,6 +40,13 @@ INSTALLED_APPS = [
     'core',
 ]
 
+AUTH_USER_MODEL = 'core.CustomUser'
+
+AUTHENTICATION_BACKENDS = [
+    'core.backends.EmailOrUsernameModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
