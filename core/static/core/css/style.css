@@ -259,3 +259,77 @@ body {
     margin-bottom: 14px;
     text-align: center;
 }
+
+
+.profile-menu {
+    position: relative;
+}
+
+.profile-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px 6px 6px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: #F0FAEE;
+    cursor: pointer;
+}
+
+.profile-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #32CD32;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.profile-pill .greeting {
+    font-size: 13px;
+    color: #1F7A1F;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 44px;
+    right: 0;
+    width: 200px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    overflow: hidden;
+    z-index: 100;
+}
+
+.profile-dropdown.show {
+    display: block;
+}
+
+.profile-dropdown a {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #333;
+    text-decoration: none;
+}
+
+.profile-dropdown a:hover {
+    background-color: #F0FAEE;
+}
+
+.profile-dropdown .logout-link {
+    color: #d64545;
+    border-top: 1px solid #eee;
+    margin-top: 4px;
+}

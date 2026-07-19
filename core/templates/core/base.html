@@ -2,63 +2,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Happy Journey{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Happy Journey{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'core/css/style.css' %}">
 </head>
 <body>
 
-    <div class="layout">
+<div class="layout">
 
-        <!-- SIDEBAR -->
-        <aside class="sidebar">
-            <div class="logo-block">
-                <img src="{% static 'core/images/logo.png' %}" alt="Happy Journey logo" class="logo-img">
-                <span class="logo-text">Happy journey</span>
+<!-- SIDEBAR -->
+<aside class="sidebar">
+<div class="logo-block">
+<img src="{% static 'core/images/logo.png' %}" alt="Happy Journey logo" class="logo-img">
+<span class="logo-text">Happy journey</span>
+</div>
+
+<nav class="side-links">
+<a href="{% url 'home' %}" 
+class="side-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+
+<a href="{% url 'about' %}" 
+class="side-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About us</a>
+
+<a href="{% url 'retreats' %}" class="side-link {% if request.resolver_match.url_name == 'retreats' %}active{% endif %}">Retreats</a>
+<a href="{% url 'trekking' %}" class="side-link {% if request.resolver_match.url_name == 'trekking' %}active{% endif %}">Trekking package</a>
+<a href="{% url 'gallery' %}" class="side-link {% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">Gallery</a>
+<a href="{% url 'reviews' %}" class="side-link {% if request.resolver_match.url_name == 'reviews' %}active{% endif %}">Reviews</a>
+<a href="{% url 'blogs' %}" class="side-link {% if request.resolver_match.url_name == 'blogs' %}active{% endif %}">Blogs</a>
+<a href="{% url 'contact' %}" class="side-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
+</nav>
+
+<button class="book-now-btn">Book now</button>
+</aside>
+
+<!-- MAIN AREA -->
+<div class="main-area">
+
+<!-- TOP BAR -->
+<header class="topbar">
+<div class="search-box">
+<input type="text" placeholder="Search destinations...">
+</div>
+<div class="auth-buttons">
+    {% if user.is_authenticated %}
+        <div class="profile-menu">
+            <div class="profile-pill" onclick="document.getElementById('profileDropdown').classList.toggle('show')">
+                <div class="profile-avatar">{{ user.username|first|upper }}</div>
+                <span class="greeting">Hi, {{ user.first_name|default:user.username }}</span>
+                <span style="font-size: 10px; color: #1F7A1F;">&#9662;</span>
             </div>
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="#">My profile</a>
+                <a href="#">My bookings</a>
+                <a href="#">My history</a>
 
-            <nav class="side-links">
-    <a href="{% url 'home' %}" 
-       class="side-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+                <a href="{% url 'logout' %}" class="logout-link" onclick="return confirm('Are you sure you want to logout?');">Logout</a>
+            </div>
+        </div>
+    {% else %}
+        <a href="{% url 'login' %}" class="login-btn">Login</a>
+        <a href="#" class="signup-btn">Sign up</a>
+    {% endif %}
+</div>
+</header>
 
-    <a href="{% url 'about' %}" 
-       class="side-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About us</a>
-
-    
-        <a href="{% url 'retreats' %}" class="side-link {% if request.resolver_match.url_name == 'retreats' %}active{% endif %}">Retreats</a>
-        <a href="{% url 'trekking' %}" class="side-link {% if request.resolver_match.url_name == 'trekking' %}active{% endif %}">Trekking package</a>
-        <a href="{% url 'gallery' %}" class="side-link {% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">Gallery</a>
-        <a href="{% url 'reviews' %}" class="side-link {% if request.resolver_match.url_name == 'reviews' %}active{% endif %}">Reviews</a>
-        <a href="{% url 'blogs' %}" class="side-link {% if request.resolver_match.url_name == 'blogs' %}active{% endif %}">Blogs</a>
-        <a href="{% url 'contact' %}" class="side-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
-     </nav>
-
-            <button class="book-now-btn">Book now</button>
-        </aside>
-
-        <!-- MAIN AREA -->
-        <div class="main-area">
-
-            <!-- TOP BAR -->
-            <header class="topbar">
-                <div class="search-box">
-                    <input type="text" placeholder="Search destinations...">
-                </div>
-                <div class="auth-buttons">
-                    <a href="{% url 'login' %}" class="login-btn">Login</a>
-                    <button class="signup-btn">Sign up</button>
-                </div>
-            </header>
-
-            <!-- PAGE CONTENT -->
-            <main class="page-content">
+<!-- PAGE CONTENT -->
+<main class="page-content">
                 {% block content %}
                 {% endblock %}
-            </main>
+</main>
 
-        </div>
-    </div>
+</div>
+</div>
+
+<script>
+document.addEventListener('click', function(e) {
+    const menu = document.querySelector('.profile-menu');
+    const dropdown = document.getElementById('profileDropdown');
+    if (menu && dropdown && !menu.contains(e.target)) {
+        dropdown.classList.remove('show');
+    }
+});
+</script>
 
 </body>
 </html>
